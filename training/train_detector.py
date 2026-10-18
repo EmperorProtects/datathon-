@@ -72,6 +72,10 @@ def write_dataset(name: str, train: list[Path], val: list[Path]) -> Path:
 def train(dataset_yaml: Path, run_name: str, cfg: dict):
     from ultralytics import YOLO
 
+    last = RUNS_DIR / run_name / "weights" / "last.pt"
+    if last.is_file() and not (RUNS_DIR / run_name / "metrics.json").is_file():
+        print(f"resuming {run_name} from {last}")
+        return YOLO(str(last)).train(resume=True)
     model = YOLO(str(ROOT / cfg["base_model"]))
     return model.train(data=str(dataset_yaml), project=str(RUNS_DIR), name=run_name, exist_ok=True,
                        device=0, **cfg["train"])

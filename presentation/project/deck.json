@@ -1,0 +1,18 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-18T11:05:00+06:00"},
+  "lists": "css",
+  "title": "CashGuard — Datathon 26",
+  "order": ["cover", "task", "data", "arch", "perception", "timeline", "norms", "types", "privacy", "product", "limits", "next"],
+  "sections": {
+    "s1": {"description": "Задача и данные", "start": "cover"},
+    "s2": {"description": "Как устроено решение", "start": "arch"},
+    "s3": {"description": "Правила, приватность и продукт", "start": "norms"},
+    "s4": {"description": "Статус, ограничения и планы", "start": "limits"}
+  },
+  "faces": {
+    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"},
+    "jetbrains-mono": {"family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"}
+  },
+  "designSystems": []
+}

@@ -99,6 +99,19 @@ class Event:
                 "conf": round(self.conf, 3), "actor": self.actor, "role": self.role, "args": self.args}
 
 
+@dataclass
+class Candidate:
+    """Кандидат в нарушение от детектора; facts — наблюдаемые факты для описания."""
+
+    type_id: str
+    t_start: float
+    t_peak: float
+    t_end: float
+    score: float
+    source: str
+    facts: list[str] = field(default_factory=list)
+
+
 @dataclass(frozen=True)
 class VideoTimebase:
     """Соответствие номер кадра ↔ секунды по PTS (а не секунды × средний fps)."""

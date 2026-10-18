@@ -1,0 +1,18 @@
+<section id="perception" data-transition="fade" style="background:#F6F5F1;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#B4581A;letter-spacing:2px">РАСПОЗНАВАНИЕ И РОЛИ</p>
+<h2 style="font-size:72px;font-weight:600;line-height:1.1">Кто есть кто — без лиц, по геометрии</h2>
+</div>
+<table style="font-size:28px;color:#14213D">
+<tr><th style="width:52%">Показатель</th><th style="width:24%">Результат</th><th style="width:24%">Как проверяли</th></tr>
+<tr><td>Сторона кассира у стола</td><td><b>40 / 40</b></td><td>ручные зоны</td></tr>
+<tr><td>Кассир найден верно</td><td><b>40 / 40</b></td><td>просмотр кадров</td></tr>
+<tr><td>Роли людей в комнате</td><td><b>≈ 97%</b></td><td>просмотр кадров</td></tr>
+<tr><td>Якоря (стол, дверь, сейф), IoU с ручными</td><td><b>0.84–0.93</b></td><td>отложенные видео</td></tr>
+<tr><td>Детектор объектов, mAP50</td><td><b>0.71</b></td><td>отложенное семейство</td></tr>
+<tr><td>Скорость модели поз (640 px)</td><td><b>≈ 97 к/с</b></td><td>RTX 3050, FP16</td></tr>
+</table>
+<p style="font-size:28px;line-height:1.4;color:#4A5568;max-width:1550px">Кассир сидит то с ближней, то с дальней стороны стола — сторона определяется в каждом видео заново. Люди за стеклянной дверью и лишние рамки отсеиваются.</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6B7280">5</p>
+<aside>Метрики честные: детектор и якоря проверены на семействе видео, которое модель не видела. Роли проверены просмотром кадров всех 40 видео. Ошибки — инкассаторы, пока сумка не распознаётся надёжно.</aside>
+</section>

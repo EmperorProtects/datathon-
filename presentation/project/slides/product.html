@@ -1,0 +1,26 @@
+<section id="product" data-transition="fade" style="background:#F6F5F1;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#B4581A;letter-spacing:2px">ПРОДУКТ</p>
+<h2 style="font-size:72px;font-weight:600;line-height:1.1">Веб-интерфейс для проверяющего и API для жюри</h2>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<h3 style="font-size:36px;font-weight:600">Интерфейс</h3>
+<ul style="font-size:28px;line-height:1.5;color:#4A5568">
+<li>Загрузка .mov перетаскиванием</li>
+<li>Статус обработки в реальном времени</li>
+<li>Вердикт и карточки нарушений</li>
+<li>Таймлайн с маркерами: клик — перемотка</li>
+<li>Кадры-доказательства с увеличением</li>
+</ul>
+<p style="font-size:24px;line-height:1.4;color:#4A5568">API-ключ не попадает в браузер: интерфейс ходит через серверный прокси.</p>
+</div>
+<div style="flex:1.2;background:#14213D;border-radius:16px;padding:40px;display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;color:#F2A65A">POST /api/v1/analyze → job_id</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;color:#F2A65A">GET  /api/v1/jobs/{job_id}</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;color:#C9D3E6">{ "status": "done",<br>  "verdict": "violation",<br>  "violations": [{<br>    "type": "…",<br>    "timecode_sec": 18.0,<br>    "description": "…",<br>    "evidence_frames": [ … ] }] }</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6B7280">10</p>
+<aside>Двухшаговый API по разделу 10 ТЗ, ключ в заголовке X-API-Key, запросы без ключа отклоняются. Схема ответа покрыта тестами; режим STRICT_SCHEMA отдаёт только поля из ТЗ.</aside>
+</section>

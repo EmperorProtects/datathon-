@@ -38,6 +38,26 @@ timeline:
   disappear_reappear_sec: 1.0   # деньги «исчезли», если в этом месте не появились снова за это время
   near_body_frac: 0.3           # доля рамки денег внутри зоны тела
   in_zone_frac: 0.3             # доля рамки денег внутри зоны сейфа / сумки
+rules_engine:
+  start_grace_sec: 0.5          # «ушёл» в самом начале ролика — кассир ещё не пришёл
+  away_min_sec: 2.0
+  unattended_min_sec: 1.0
+  state_delay_sec: 1.5          # состояние предметов меряем не раньше, чем через 1.5 с после ухода
+  state_samples: 4
+  laptop_bright_min: 0.25       # доля ярких пикселей в рамке ноутбука — экран светится
+  safe_change_min: 0.12         # среднее изменение рамки сейфа от эталона (0..1)
+  door_change_min: 0.12
+  state_score: 0.6
+  outsider_min_sec: 1.0
+  multiple_clients_min_sec: 1.5
+  desk_item_min_sec: 1.0
+  drinking_min_sec: 0.5
+  after_client_min_sec: 1.5
+  prev_cash_lead_sec: 2.0
+  collector_min_sec: 2.0
+  recount_lookback_sec: 5.0
+  report_min_score: 0.5         # кандидаты ниже — не сообщаются
+  nms_window_sec: 3.0
 d2: {window_sec: 3.0, stride_sec: 0.5, frames_per_window: 6}
 d3: {window_sec: 5.0, stride_sec: 3.0, frames_per_window: 6, max_windows: 50}
 fusion: {decay: 0.25, nms_window_sec: 3.0, w: {d1: 1.0, d3: 1.0, d4: 1.0, d2_boost: 0.2}}
