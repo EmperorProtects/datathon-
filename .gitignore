@@ -15,3 +15,5 @@ eval/reports/
 *.onnx
 *.engine
 *.zip
+runs/
+*.log

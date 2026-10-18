@@ -1,0 +1,25 @@
+# Дообучение детектора объектов (этап 3). Ключи train передаются в Ultralytics model.train() как есть.
+base_model: weights/yolo11m.pt
+folds: 5                 # GroupKFold по визуальным семействам (split_manifest.json)
+train:
+  imgsz: 864             # кадры 464×848 — без даунскейла
+  epochs: 60
+  patience: 25
+  batch: 4              # batch 8 при 864 px не влезает в 6 ГБ (выгрузка в общую память, в 6 раз медленнее)
+  workers: 4
+  cache: ram
+  cos_lr: true
+  close_mosaic: 10
+  # Аугментации (PLAN, этап 3): переживать смену ракурса
+  degrees: 15
+  perspective: 0.0008
+  scale: 0.5
+  translate: 0.2
+  fliplr: 0.5
+  mosaic: 1.0
+  hsv_h: 0.015
+  hsv_s: 0.6
+  hsv_v: 0.4
+  seed: 0
+  deterministic: false
+  plots: true

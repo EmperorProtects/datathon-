@@ -19,6 +19,36 @@ class VideoInfo:
     dropped_frames: int  # интервалов между кадрами длиннее 1.5 × медианного
 
 
+Box = tuple[float, float, float, float]  # x1, y1, x2, y2 в пикселях исходного кадра
+
+
+@dataclass(frozen=True)
+class Detection:
+    cls: str
+    conf: float
+    box: Box
+    track_id: int | None = None
+
+
+@dataclass(frozen=True)
+class Person:
+    """Человек по YOLO-pose: рамка + 17 точек COCO (x, y, conf). Без распознавания лиц."""
+
+    conf: float
+    box: Box
+    keypoints: np.ndarray  # (17, 3)
+    track_id: int | None = None
+    hands: tuple[tuple[float, float] | None, tuple[float, float] | None] = (None, None)  # левая, правая
+
+
+@dataclass(frozen=True)
+class FramePerception:
+    frame_idx: int
+    t_sec: float
+    persons: list[Person]
+    objects: list[Detection]
+
+
 @dataclass(frozen=True)
 class VideoTimebase:
     """Соответствие номер кадра ↔ секунды по PTS (а не секунды × средний fps)."""
