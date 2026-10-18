@@ -18,7 +18,7 @@
 поэтому модель выбрана осознанно: из моделей, которые влезают в 6 ГБ VRAM, у неё лучшее качество.
 Замена с Apache-2.0 без изменения кода — Qwen2-VL-2B-Instruct (путь задаётся в `configs/models.yaml`).
 
-## Библиотеки (этап 1)
+## Библиотеки
 
 | Библиотека | Лицензия |
 |---|---|
@@ -30,5 +30,8 @@
 | RQ | BSD-2-Clause |
 | PyYAML | MIT |
 | Pillow | MIT-CMU (HPND) |
+| PyAV | BSD-3-Clause (wheel включает FFmpeg под LGPL) |
+| NumPy | BSD-3-Clause |
+| openpyxl (только подготовка данных) | MIT |
 | Redis 7.2 (сервер, образ; 7.4+ уже не BSD) | BSD-3-Clause |
 | nginx | BSD-2-Clause |

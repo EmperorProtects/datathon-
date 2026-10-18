@@ -3,7 +3,7 @@ __pycache__/
 .venv/
 .env
 .pytest_cache/
-data/
+/data/
 weights/*
 !weights/.gitkeep
 storage/
@@ -14,3 +14,4 @@ eval/reports/
 *.pt
 *.onnx
 *.engine
+*.zip

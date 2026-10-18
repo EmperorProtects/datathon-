@@ -1,0 +1,392 @@
+# Реестр типов нарушений и нормативов.
+# Сгенерирован training/data/build_registry.py из командного черновика (forte_annotations_v5),
+# затем редактируется вручную. Нормативы НЕ сверены с официальной редакцией adilet.zan.kz
+# (verified_official_text: false) — перенесены как есть по решению команды.
+# Тип без primary_rule_id не загружается и не сообщается в ответе API.
+schema_version: 1
+source_documents:
+- source_id: NBRK_231_2019
+  short_title: Постановление Правления НБРК от 29.11.2019 № 231
+  title: Об утверждении Правил осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей
+    в банках второго уровня, филиалах банков-нерезидентов Республики Казахстан, Национальном операторе почты и юридических
+    лицах, исключительной деятельностью которых является инкассация банкнот, монет и ценностей
+  official_url: https://adilet.zan.kz/rus/docs/V1900019680
+  verified_official_text: false
+  verification_note: Официальная карточка при открытии выдала оболочку с требованием JavaScript. Текст пунктов прочитан
+    в открытой копии Учёт.kz, включающей поправки 2026 года. Отметка редакции на зеркале не гарантирует полноту
+    действующей редакции. Нужна итоговая сверка с официальной редакцией на выбранную дату применимости.
+- source_id: NBRK_14_2020
+  short_title: Постановление Правления НБРК от 24.02.2020 № 14
+  title: Об утверждении Правил организации охраны и устройства помещений банков второго уровня, филиалов банков-нерезидентов
+    Республики Казахстан, Национального оператора почты, юридических лиц, исключительной деятельностью которых является
+    инкассация банкнот, монет и ценностей, и юридических лиц, осуществляющих деятельность исключительно через обменные
+    пункты на основании лицензии Национального Банка Республики Казахстан на обменные операции с наличной иностранной
+    валютой
+  official_url: https://adilet.zan.kz/rus/docs/V2000020075
+  verified_official_text: false
+  verification_note: Пункты прочитаны в открытой копии Учёт.kz. Для пункта 16 использован текст временной редакции
+    до 01.01.2027, приведённый в примечании к постановлению № 88 от 24.12.2024. Нужна итоговая сверка с официальной
+    редакцией.
+- source_id: MCHS_55_2022
+  short_title: Приказ Министра по чрезвычайным ситуациям РК от 21.02.2022 № 55
+  title: Об утверждении Правил пожарной безопасности
+  official_url: https://adilet.zan.kz/rus/docs/V2200026867
+  verified_official_text: false
+  verification_note: Пункт 83 прочитан в открытой копии Учёт.kz. Нужна итоговая сверка с официальной редакцией;
+    применимость зависит от окончания смены и предусмотренных исключений.
+rules:
+- rule_id: R231_7
+  source_id: NBRK_231_2019
+  clause: пункт 7
+  summary_ru: Надлежащая проверка предшествует приёму и выдаче наличных.
+  applicability_limits_ru: Отсутствие передачи пластиковой карточки не доказывает отсутствие надлежащей проверки.
+  verified_official_text: false
+- rule_id: R231_12
+  source_id: NBRK_231_2019
+  clause: пункт 12
+  summary_ru: Личные вещи хранятся вне кассового узла; предусмотрены исключения.
+  applicability_limits_ru: Допускаются лекарственные средства, медицинские изделия и средства связи без функции
+    фото- и видеофиксации. Принадлежность предмета сотруднику и вид предмета требуют проверки.
+  verified_official_text: false
+- rule_id: R231_19_1
+  source_id: NBRK_231_2019
+  clause: пункт 19, подпункт 1)
+  summary_ru: Визуальная идентификация по удостоверению либо цифровым данным.
+  applicability_limits_ru: Нужно учитывать сервис цифровых документов и то, не выполнена ли проверка вне доступного
+    фрагмента. Нельзя сводить требование к обязательной передаче пластиковой карточки.
+  verified_official_text: false
+- rule_id: R231_19_4
+  source_id: NBRK_231_2019
+  clause: пункт 19, подпункт 4)
+  summary_ru: Сверка фактически принятой суммы с приходным документом.
+  applicability_limits_ru: Не является запретом возвращать клиенту часть переданных денег. Необходимо знать согласованную
+    сумму и содержание документа.
+  verified_official_text: false
+- rule_id: R231_20_PRESENCE
+  source_id: NBRK_231_2019
+  clause: пункт 20, абзац первый
+  summary_ru: Приём и пересчёт денег выполняются в присутствии клиента.
+  applicability_limits_ru: Применяется к непосредственному приёму денег от клиента. Не переносить автоматически
+    на обработку инкассации или последующий внутренний пересчёт. Кассир не обязан физически удерживать клиента.
+  verified_official_text: false
+- rule_id: R231_20_STORAGE
+  source_id: NBRK_231_2019
+  clause: пункт 20, абзац второй
+  summary_ru: Ранее принятые деньги хранятся в специальных запираемых устройствах.
+  applicability_limits_ru: В правиле названы не только сейфы, но также металлический шкаф, тележка, ящики стола
+    и тумба. Требуется отличить ранее принятую наличность от денег текущей операции.
+  verified_official_text: false
+- rule_id: R231_24_DOCS
+  source_id: NBRK_231_2019
+  clause: пункт 24, вводный абзац и подпункт 1); пункт 106
+  summary_ru: Приём инкассации проводится по препроводительному документу.
+  applicability_limits_ru: Это документ о передаваемой наличности, а не только удостоверение личности инкассатора.
+    Необходимо учитывать цифровое оформление и направление передачи.
+  verified_official_text: false
+- rule_id: R231_24_ACCOUNTING
+  source_id: NBRK_231_2019
+  clause: пункт 24, подпункт 2)
+  summary_ru: Сумма принятой инкассации регистрируется по внутреннему порядку.
+  applicability_limits_ru: Отсутствие набора текста на ноутбуке не доказывает отсутствие регистрации.
+  verified_official_text: false
+- rule_id: R231_25
+  source_id: NBRK_231_2019
+  clause: пункт 25
+  summary_ru: Повреждённая сумка вскрывается и пересчитывается при инкассаторе.
+  applicability_limits_ru: Условие — обнаруженное нарушение целостности. Не является общим требованием немедленно
+    вскрывать каждую принятую сумку.
+  verified_official_text: false
+- rule_id: R231_43
+  source_id: NBRK_231_2019
+  clause: пункт 43
+  summary_ru: Сортировка проводится по номиналам и износу.
+  applicability_limits_ru: Не запрещает любое временное объединение банкнот при пересчёте. Учитывать правила сборной
+    упаковки.
+  verified_official_text: false
+- rule_id: R231_46_47
+  source_id: NBRK_231_2019
+  clause: пункты 46–47
+  summary_ru: Корешки и обычные полные пачки формируются по номиналу.
+  applicability_limits_ru: Нужно установить, что формируется именно корешок или обычная полная пачка, а не сборная
+    пачка или временная стопка.
+  verified_official_text: false
+- rule_id: R231_49_50
+  source_id: NBRK_231_2019
+  clause: пункты 49–50
+  summary_ru: Сборная упаковка разных номиналов допускается при установленных условиях.
+  applicability_limits_ru: Исключение, препятствующее автоматической маркировке любого смешения номиналов как нарушения.
+  verified_official_text: false
+- rule_id: R231_74
+  source_id: NBRK_231_2019
+  clause: пункт 74
+  summary_ru: Хранение в кладовой/сейфовой комнате — после учёта.
+  applicability_limits_ru: Учёт в системе не устанавливается по движениям рук на клавиатуре. Не подменять кладовую
+    или сейфовую комнату любым рабочим сейфом.
+  verified_official_text: false
+- rule_id: R231_76
+  source_id: NBRK_231_2019
+  clause: пункт 76
+  summary_ru: Ключи кладовой/сейфовой комнаты находятся у ответственных лиц.
+  applicability_limits_ru: Речь о замках двери кладовой или сейфовой комнаты. Для ключа обычного рабочего сейфа
+    основная ссылка — пункт 80.
+  verified_official_text: false
+- rule_id: R231_77
+  source_id: NBRK_231_2019
+  clause: пункт 77
+  summary_ru: При хранении разделяются валюты и номиналы.
+  applicability_limits_ru: Нужна стадия хранения в кладовой/сейфовой комнате. Три отдельные пачки в одном сейфе
+    не означают автоматически смешанное хранение.
+  verified_official_text: false
+- rule_id: R231_80
+  source_id: NBRK_231_2019
+  clause: пункт 80
+  summary_ru: Внутренний порядок исключает несанкционированное использование ценностей, печатей, ключей.
+  applicability_limits_ru: Не задаёт универсального требования складывать все бумаги и печати именно в сейф. Для
+    подробного способа хранения нужен внутренний документ банка и оценка доступности посторонним.
+  verified_official_text: false
+- rule_id: R231_87_1
+  source_id: NBRK_231_2019
+  clause: пункт 87-1
+  summary_ru: Для инкассации предусмотрены операции с цифровыми документами.
+  applicability_limits_ru: Отсутствие видимой бумажной передачи не равно отсутствию документа.
+  verified_official_text: false
+- rule_id: R14_8
+  source_id: NBRK_14_2020
+  clause: пункт 8
+  summary_ru: Кассовый узел изолируется закрывающимся служебным входом.
+  applicability_limits_ru: Норма об изоляции и устройстве. Сам факт открытой произвольной двери не доказывает её
+    нарушение; необходимо определить назначение двери и защищённую границу.
+  verified_official_text: false
+- rule_id: R14_16_1
+  source_id: NBRK_14_2020
+  clause: пункт 16, подпункт 1), временная редакция до 01.01.2027
+  summary_ru: Отдельный вход кассы имеет закрывающуюся на замок дверь.
+  applicability_limits_ru: Требование наличия запираемой двери не тождественно безусловному запрету открывать её.
+    Для режима постоянного закрытия необходима применимая эксплуатационная норма.
+  verified_official_text: false
+- rule_id: R55_83
+  source_id: MCHS_55_2022
+  clause: пункт 83
+  summary_ru: После смены электроприборы обесточиваются, с предусмотренными исключениями.
+  applicability_limits_ru: Учитывать функциональное назначение и инструкцию изготовителя. Выключение света не доказывает
+    конец смены; светящийся экран не показывает надёжно питание от сети или состояние входа в систему.
+  verified_official_text: false
+types:
+- type_id: CASH_PARTIALLY_RETURNED
+  name_ru: Часть наличности возвращена клиенту
+  kind: action
+  primary_rule_id: R231_19_4
+  rule_refs:
+  - rule_id: R231_19_4
+    relationship: context_only
+    application_reason_ru: Проверяется соответствие принятой суммы документу, а не сам факт возврата.
+  status: draft
+- type_id: CASH_COUNT_WITHOUT_VISIBLE_IDENTITY_CHECK
+  name_ru: Пересчёт начат без видимой проверки личности
+  kind: omission
+  primary_rule_id: R231_7
+  rule_refs:
+  - rule_id: R231_7
+    relationship: conditional
+    application_reason_ru: Нужно подтвердить, что надлежащая проверка действительно не была выполнена.
+  - rule_id: R231_19_1
+    relationship: conditional
+    application_reason_ru: Визуальная идентификация может использовать цифровые данные.
+  status: draft
+- type_id: PREVIOUS_CUSTOMER_CASH_UNSECURED
+  name_ru: Деньги предыдущего клиента не убраны перед следующей операцией
+  kind: omission
+  primary_rule_id: R231_20_STORAGE
+  rule_refs:
+  - rule_id: R231_20_STORAGE
+    relationship: direct
+    application_reason_ru: Деньги завершённой операции остаются вне предусмотренного устройства.
+  status: draft
+- type_id: POWERED_EQUIPMENT_LEFT_UNATTENDED
+  name_ru: Работающее оборудование оставлено без наблюдения
+  kind: omission
+  primary_rule_id: R55_83
+  rule_refs:
+  - rule_id: R55_83
+    relationship: conditional
+    application_reason_ru: Требование относится к окончанию рабочего времени и содержит исключения.
+  status: draft
+- type_id: INCASSATION_CASH_STORED_WITHOUT_VISIBLE_RECOUNT
+  name_ru: Деньги из инкассаторской сумки помещены в сейф без видимого пересчёта
+  kind: omission
+  primary_rule_id: R231_25
+  rule_refs:
+  - rule_id: R231_25
+    relationship: context_only
+    application_reason_ru: Обязательный пересчёт при инкассаторе здесь обусловлен повреждением сумки; такое повреждение
+      не описано.
+  - rule_id: R231_77
+    relationship: context_only
+    application_reason_ru: Для нарушения раздельного хранения нужно показать фактическое смешение, а не соседство
+      пачек.
+  status: draft
+- type_id: NO_VISIBLE_ACCOUNTING_ACTION
+  name_ru: Не наблюдается действие по регистрации наличности
+  kind: omission
+  primary_rule_id: R231_24_ACCOUNTING
+  rule_refs:
+  - rule_id: R231_24_ACCOUNTING
+    relationship: conditional
+    application_reason_ru: Регистрацию нельзя проверить по отсутствию печати на клавиатуре.
+  - rule_id: R231_74
+    relationship: conditional
+    application_reason_ru: Нужны данные учёта и установленное назначение места хранения.
+  status: draft
+- type_id: CASH_BAG_LEFT_UNATTENDED
+  name_ru: Инкассаторская сумка оставлена на столе после ухода кассира
+  kind: omission
+  primary_rule_id: R231_20_STORAGE
+  rule_refs:
+  - rule_id: R231_20_STORAGE
+    relationship: conditional
+    application_reason_ru: Нужно подтвердить, что сумка содержит уже принятую наличность и оставлена вне защищённого
+      хранения.
+  - rule_id: R231_74
+    relationship: conditional
+    application_reason_ru: Дополнительно применимо при переходе к хранению в кладовой/сейфовой комнате.
+  - rule_id: R231_25
+    relationship: context_only
+    application_reason_ru: Неоткрытие само по себе не нарушает условную норму о повреждённой сумке.
+  status: draft
+- type_id: CASH_BAG_ACCEPTED_WITHOUT_VISIBLE_DOCUMENTS
+  name_ru: Сумка принята без видимой передачи или проверки документов
+  kind: omission
+  primary_rule_id: R231_24_DOCS
+  rule_refs:
+  - rule_id: R231_24_DOCS
+    relationship: conditional
+    application_reason_ru: Нужно подтвердить приём наличности от инкассации без предусмотренного документа.
+  - rule_id: R231_87_1
+    relationship: exception
+    application_reason_ru: Документы могут быть цифровыми; бумажная передача не обязательный визуальный маркер.
+  status: draft
+- type_id: MULTIPLE_CUSTOMERS_SERVED
+  name_ru: В зоне обслуживания одновременно находятся два посетителя
+  kind: action
+  primary_rule_id: R231_20_STORAGE
+  rule_refs:
+  - rule_id: R231_20_STORAGE
+    relationship: conditional
+    application_reason_ru: Связь появляется при работе с наличностью разных независимых клиентов.
+  status: draft
+- type_id: SAFE_LEFT_OPEN
+  name_ru: Дверца сейфа оставлена открытой после извлечения денег
+  kind: omission
+  primary_rule_id: R231_20_STORAGE
+  rule_refs:
+  - rule_id: R231_20_STORAGE
+    relationship: conditional
+    application_reason_ru: Нужно показать незащищённое хранение ранее принятой наличности, а не обычное открытие
+      при работе.
+  status: draft
+- type_id: SAFE_KEY_LEFT_IN_LOCK
+  name_ru: Ключ оставлен в замке после ухода кассира
+  kind: omission
+  primary_rule_id: R231_80
+  rule_refs:
+  - rule_id: R231_80
+    relationship: conditional
+    application_reason_ru: Оставленный ключ может не обеспечивать исключения несанкционированного использования.
+  - rule_id: R231_76
+    relationship: conditional
+    application_reason_ru: Только если ключ относится к двери кладовой или сейфовой комнаты, а не обычного сейфа.
+  status: draft
+- type_id: STAMPS_LEFT_UNATTENDED
+  name_ru: Печати или штампы оставлены на столе после ухода
+  kind: omission
+  primary_rule_id: R231_80
+  rule_refs:
+  - rule_id: R231_80
+    relationship: conditional
+    application_reason_ru: Нужно установить возможность несанкционированного использования.
+  status: draft
+- type_id: DOCUMENTS_LEFT_UNATTENDED
+  name_ru: Документы оставлены на столе после ухода
+  kind: omission
+  primary_rule_id: R231_80
+  rule_refs:
+  - rule_id: R231_80
+    relationship: conditional
+    application_reason_ru: Применимо к относящимся к ценностям документам; не ко всем листам бумаги без различия.
+  status: draft
+- type_id: CASH_LEFT_UNATTENDED
+  name_ru: Наличные оставлены на столе после ухода кассира
+  kind: omission
+  primary_rule_id: R231_20_STORAGE
+  rule_refs:
+  - rule_id: R231_20_STORAGE
+    relationship: direct
+    application_reason_ru: Ранее принятая наличность остаётся вне специального устройства.
+  - rule_id: R231_74
+    relationship: conditional
+    application_reason_ru: Дополнительная связь, если это завершение операций и передача на хранение.
+  status: draft
+- type_id: CASHROOM_DOOR_LEFT_OPEN
+  name_ru: Дверь помещения остаётся открытой
+  kind: omission
+  primary_rule_id: R14_8
+  rule_refs:
+  - rule_id: R14_8
+    relationship: conditional
+    application_reason_ru: Нужно определить, что это служебный вход, обеспечивающий изоляцию кассового узла.
+  - rule_id: R14_16_1
+    relationship: context_only
+    application_reason_ru: Норма требует наличия запираемой двери, а не объявляет любое её открытие нарушением.
+  status: draft
+- type_id: CASH_COUNT_CONTINUES_WITHOUT_CUSTOMER
+  name_ru: Пересчёт продолжается после ухода вносителя денег
+  kind: action
+  primary_rule_id: R231_20_PRESENCE
+  rule_refs:
+  - rule_id: R231_20_PRESENCE
+    relationship: direct
+    application_reason_ru: При непосредственном приёме пересчёт продолжается после ухода клиента.
+  status: draft
+- type_id: PERSONAL_ITEMS_ON_CASH_DESK
+  name_ru: Личные вещи размещены на рабочем столе кассира
+  kind: action
+  primary_rule_id: R231_12
+  rule_refs:
+  - rule_id: R231_12
+    relationship: direct
+    application_reason_ru: Описание указывает на хранение личных вещей внутри кассового узла.
+  status: draft
+- type_id: DENOMINATIONS_COMBINED
+  name_ru: В одну стопку объединяются купюры разных номиналов
+  kind: action
+  primary_rule_id: R231_43
+  rule_refs:
+  - rule_id: R231_43
+    relationship: conditional
+    application_reason_ru: Применимо при нарушении установленной сортировки, а не любом временном объединении.
+  - rule_id: R231_46_47
+    relationship: conditional
+    application_reason_ru: Применимо к формируемому корешку или обычной полной пачке одного номинала.
+  - rule_id: R231_49_50
+    relationship: exception
+    application_reason_ru: Правила предусматривают сборную упаковку разных номиналов.
+  - rule_id: R231_77
+    relationship: conditional
+    application_reason_ru: Применимо при нарушении раздельного хранения в кладовой/сейфовой комнате.
+  status: draft
+- type_id: BEVERAGE_CONSUMPTION_AT_WORKSTATION
+  name_ru: Употребление напитка на рабочем месте
+  kind: action
+  primary_rule_id: null
+  rule_refs: []
+  status: draft
+- type_id: DIFFERENT_CUSTOMERS_CASH_COMBINED
+  name_ru: Объединяются деньги от двух разных клиентов
+  kind: action
+  primary_rule_id: R231_20_STORAGE
+  rule_refs:
+  - rule_id: R231_20_STORAGE
+    relationship: direct
+    application_reason_ru: Физическое объединение показывает совместную работу с ранее принятыми деньгами и наличностью
+      новой операции.
+  status: draft

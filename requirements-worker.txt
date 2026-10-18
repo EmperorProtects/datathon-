@@ -1,3 +1,5 @@
 -r requirements-api.txt
 Pillow==11.0.0
-# Этап 3+: ultralytics, torch, opencv-python-headless, numpy
+av==14.0.1
+numpy>=1.26,<3
+# Этап 3+: ultralytics, torch, opencv-python-headless
