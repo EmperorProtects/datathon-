@@ -1,3 +1,9 @@
+Дорогие судьи к сожалению у нас упал cloudflare 
+Актуальные ссылки: 
+- Web interface URL: https://ever-equation-artists-bottle.trycloudflare.com/
+  - API base URL: https://ever-equation-artists-bottle.trycloudflare.com/api/v1
+  - API key: PQRcBPZr3qAvJ_IbPsqeTM0qoNQZT9MOA36ZVZKbY9s
+
 # CashGuard — выявление нарушений кассовой дисциплины по видео
 
 Веб-сервис и API (Datathon 26, ForteBank). Принимает `.mov`-видео с камеры над кассой и возвращает
