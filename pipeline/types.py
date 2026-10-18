@@ -1,7 +1,8 @@
 """Общие типы данных между модулями пайплайна."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Literal
 
 import numpy as np
 
@@ -47,6 +48,38 @@ class FramePerception:
     t_sec: float
     persons: list[Person]
     objects: list[Detection]
+
+
+Side = Literal["near", "far"]  # ближняя к камере / дальняя сторона стойки
+Role = Literal["cashier", "client", "collector", "other"]
+
+
+@dataclass(frozen=True)
+class Anchor:
+    cls: str
+    box: Box          # медиана по кадрам
+    presence: float   # доля кадров, где объект найден
+
+
+@dataclass
+class Scene:
+    anchors: dict[str, Anchor]
+    zones: dict[str, Box]              # counter_zone, safe_zone, door_zone, staff_side, client_side, …
+    staff_side: Side | None
+    scene_confidence: float            # 0..1; низкая — правила, зависящие от зон, отключаются
+    flags: list[str] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class TrackInfo:
+    track_id: int
+    role: Role
+    n_frames: int
+    t_first: float
+    t_last: float
+    side_frac: dict[str, float]        # near / far / none
+    outside_room: bool = False
+    reason: str = ""
 
 
 @dataclass(frozen=True)

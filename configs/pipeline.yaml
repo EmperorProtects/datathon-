@@ -5,6 +5,22 @@ detector: {objects_model: weights/objects_best.pt, conf: 0.25, imgsz: 864}
 pose: {model: weights/yolo11m-pose.pt, conf: 0.3, kpt_conf: 0.3, imgsz: 640}
 tracker: bytetrack.yaml
 perception: {batch: 8, half: true, device: 0}
+scene:
+  static_classes: [counter, safe, door, laptop, cash_counter]
+  required_anchors: [counter]   # без стойки стороны кассы не определить → scene_confidence низкий
+  anchor_min_conf: 0.4
+  anchor_min_presence: 0.3      # доля кадров, где якорь найден
+  side_margin_frac: 0.1         # мёртвая зона вокруг центра стойки, в долях её высоты
+  zone_margin_frac: 0.15        # расширение зон объектов, в долях размера объекта
+  side_zone_extra_width: 0.25   # зоны сторон шире стойки на эту долю её ширины с каждой стороны
+roles:
+  min_track_sec: 1.0            # более короткие треки — шум (other)
+  staff_side_frac: 0.6          # кассир: ≥60% времени на стороне персонала
+  client_side_frac: 0.5
+  cashier_overlap_tol: 0.2      # фрагмент трека кассира почти не пересекается по времени с основным
+  outside_door_frac: 0.9        # за стеклом двери: почти всё время внутри зоны двери …
+  outside_height_frac: 0.7      # … и заметно мельче людей в комнате
+  collector_bag_min_frames: 3   # инкассатор: сумка инкассации у рук/корпуса хотя бы в N кадрах
 timeline: {min_event_sec: 0.3, gap_sec: 0.5}
 d2: {window_sec: 3.0, stride_sec: 0.5, frames_per_window: 6}
 d3: {window_sec: 5.0, stride_sec: 3.0, frames_per_window: 6, max_windows: 50}
