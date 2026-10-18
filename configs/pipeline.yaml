@@ -19,7 +19,10 @@ roles:
   client_side_frac: 0.5
   cashier_overlap_tol: 0.2      # фрагмент трека кассира почти не пересекается по времени с основным
   outside_door_frac: 0.9        # за стеклом двери: почти всё время внутри зоны двери …
-  outside_height_frac: 0.7      # … и заметно мельче людей в комнате
+  outside_height_frac: 0.7      # … и заметно мельче людей в комнате,
+  outside_feet_above_counter_frac: 0.25  # … или ноги выше верха стойки на долю её высоты
+  duplicate_iou: 0.5             # вторая рамка на том же кассире (медианный IoU в общих кадрах)
+  cashier_part_max_sec: 2.0       # короткий трек, касающийся рамки кассира, — его частичная рамка (рука)
   collector_bag_min_frames: 3   # инкассатор: сумка инкассации у рук/корпуса хотя бы в N кадрах
 timeline: {min_event_sec: 0.3, gap_sec: 0.5}
 d2: {window_sec: 3.0, stride_sec: 0.5, frames_per_window: 6}

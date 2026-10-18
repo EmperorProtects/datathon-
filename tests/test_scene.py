@@ -119,3 +119,29 @@ def test_build_scene_zones_relative_to_anchors():
     assert scene.zones["staff_side"][3] == pytest.approx(417.5)       # дальняя сторона — выше центра стойки
     assert scene.zones["client_side"][3] == WH[1]
     assert scene.scene_confidence == pytest.approx(3 / 5)
+
+
+def test_full_size_person_far_behind_glass_is_outside():
+    # рост как у людей в комнате, но ноги выше верха стойки (y1=365): стоит в коридоре за стеклом
+    spec = {1: (NEAR_BOX, 0, 200), 2: (FAR_BOX, 0, 200), 9: ((20, 120, 100, 300), 0, 200)}
+    _, tracks = analyze_scene(make_frames(spec), CFG, FPS, WH)
+    assert tracks[9].outside_room
+
+
+def test_person_entering_through_door_is_not_outside():
+    # заходит через дверь: в зоне двери, но ноги на уровне пола комнаты
+    spec = {1: (NEAR_BOX, 0, 200), 6: ((30, 180, 130, 380), 0, 200)}
+    _, tracks = analyze_scene(make_frames(spec), CFG, FPS, WH)
+    assert not tracks[6].outside_room
+
+
+def test_duplicate_box_on_cashier_is_not_stranger():
+    dup = (NEAR_BOX[0] + 5, NEAR_BOX[1] + 10, NEAR_BOX[2] - 5, NEAR_BOX[3])
+    _, tracks = analyze_scene(make_frames({1: (NEAR_BOX, 0, 200), 8: (dup, 20, 80)}), CFG, FPS, WH)
+    assert tracks[8].role == "cashier" and "дубль" in tracks[8].reason
+
+
+def test_short_partial_box_touching_cashier_is_cashier_part():
+    arm = (NEAR_BOX[2] - 15, NEAR_BOX[1] + 20, NEAR_BOX[2] + 15, NEAR_BOX[1] + 120)
+    _, tracks = analyze_scene(make_frames({1: (NEAR_BOX, 0, 200), 7: (arm, 50, 63)}), CFG, FPS, WH)
+    assert tracks[7].role == "cashier"

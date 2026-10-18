@@ -56,7 +56,7 @@ def iou(a, b) -> float:
     return inter / union if union > 0 else 0.0
 
 
-def sheet(path: Path, frames, tracks, n: int = 5) -> str:
+def sheet(path: Path, frames, tracks, n: int = 5, save_to: Path | None = None) -> str:
     with_people = [f for f in frames if f.persons] or frames
     picks = [with_people[int(i)] for i in np.linspace(0, len(with_people) - 1, n)]
     by_idx = {f.frame_idx: f for f in picks}
@@ -72,8 +72,12 @@ def sheet(path: Path, frames, tracks, n: int = 5) -> str:
             cv2.putText(img, f"{role[:4]} #{p.track_id}", (x1 + 2, max(12, y1 + 14)), cv2.FONT_HERSHEY_SIMPLEX, 0.45, c, 2)
         cv2.putText(img, f"{f.t_sec:.1f}s", (6, img.shape[0] - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
         tiles.append(cv2.resize(img, (232, 424)))
+    img = Image.fromarray(np.concatenate(tiles, axis=1))
+    if save_to:
+        save_to.parent.mkdir(parents=True, exist_ok=True)
+        img.save(save_to, quality=80)
     buf = io.BytesIO()
-    Image.fromarray(np.concatenate(tiles, axis=1)).save(buf, format="JPEG", quality=80)
+    img.save(buf, format="JPEG", quality=80)
     return base64.b64encode(buf.getvalue()).decode("ascii")
 
 
@@ -122,7 +126,7 @@ def main() -> None:
             f"{html.escape(anchor_note)}; флаги: {scene.flags or '—'}</p>"
             f"<p class=s>{html.escape(v.get('summary_ru', ''))}</p>"
             f"<table><tr><th>Трек</th><th>Роль</th><th>Кадров</th><th>Время, с</th><th>Стороны</th><th>Почему</th></tr>{rows}</table>"
-            f"<img src='data:image/jpeg;base64,{sheet(ROOT / v['path'], frames, tracks)}'>")
+            f"<img src='data:image/jpeg;base64,{sheet(ROOT / v['path'], frames, tracks, save_to=args.out.parent / 'roles' / f'{vid}.jpg')}'>")
         print(vid, scene.staff_side, side_ok, {r: list(roles.values()).count(r) for r in set(roles.values())})
 
     ok = [s for s in summary.values() if s["manual_staff_side"]]
