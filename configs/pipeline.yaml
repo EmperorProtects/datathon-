@@ -1,0 +1,13 @@
+analysis_fps: 10
+evidence_full_fps: true
+detector: {person_model: yolo11m.pt, objects_model: weights/objects_best.pt, conf: 0.25, imgsz: 960}
+pose: {model: yolo11m-pose.pt, conf: 0.3}
+tracker: bytetrack.yaml
+timeline: {min_event_sec: 0.3, gap_sec: 0.5}
+d2: {window_sec: 3.0, stride_sec: 0.5, frames_per_window: 6}
+d3: {window_sec: 5.0, stride_sec: 3.0, frames_per_window: 6, max_windows: 50}
+fusion: {decay: 0.25, nms_window_sec: 3.0, w: {d1: 1.0, d3: 1.0, d4: 1.0, d2_boost: 0.2}}
+gate: {tau_low: 0.35, tau_high: 0.75, min_agree: 2}
+omission_timecode: checkpoint
+budget_sec: {total: 270, perception: 60, d3: 90, verify: 40}
+strict_schema: false

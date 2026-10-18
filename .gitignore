@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.pytest_cache/
+data/
+weights/*
+!weights/.gitkeep
+storage/
+certs/
+eval/reports/
+*.mov
+*.mp4
+*.pt
+*.onnx
+*.engine

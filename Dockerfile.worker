@@ -1,0 +1,25 @@
+# Воркер с GPU. CUDA-библиотеки приходят вместе с wheel'ами torch (этап 3+),
+# драйвер — от хоста через NVIDIA Container Toolkit.
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
+    HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 YOLO_OFFLINE=1
+WORKDIR /srv/app
+
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements-api.txt requirements-worker.txt ./
+RUN pip install --no-cache-dir -r requirements-worker.txt
+
+# Веса копируются в образ на этапе сборки — в рантайме сеть воркеру не нужна.
+COPY weights ./weights
+COPY app ./app
+COPY pipeline ./pipeline
+COPY configs ./configs
+COPY rules ./rules
+
+RUN useradd -r -u 1000 app && mkdir -p /srv/storage && chown app /srv/storage
+USER app
+
+CMD ["python", "-m", "app.worker.main"]

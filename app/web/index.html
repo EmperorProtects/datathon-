@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CashGuard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>CashGuard</h1>
+    <p class="sub">Анализ видео банковской кассы на признаки нарушений кассовой дисциплины. Обработка локальная, лица на кадрах размываются.</p>
+  </header>
+
+  <main>
+    <section class="panel" id="upload-panel">
+      <form id="upload-form">
+        <label class="drop" id="drop">
+          <input type="file" id="file" accept=".mov,video/quicktime" hidden>
+          <span id="drop-text">Перетащите файл .mov сюда или нажмите, чтобы выбрать</span>
+        </label>
+        <button type="submit" id="submit" disabled>Анализировать</button>
+      </form>
+      <div id="status" class="status" hidden>
+        <span class="spinner" id="spinner"></span>
+        <span id="status-text"></span>
+      </div>
+    </section>
+
+    <section class="panel" id="result" hidden>
+      <div class="verdict" id="verdict"></div>
+      <div class="player">
+        <video id="video" controls muted playsinline></video>
+        <div class="timeline" id="timeline" aria-label="Таймлайн нарушений"></div>
+        <div class="timeline-scale"><span>0 с</span><span id="duration-label"></span></div>
+      </div>
+      <div id="violations"></div>
+    </section>
+  </main>
+
+  <dialog id="lightbox"><img id="lightbox-img" alt="Кадр-доказательство"><form method="dialog"><button>Закрыть</button></form></dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
