@@ -89,12 +89,14 @@ def assign_roles(frames: list[FramePerception], scene: Scene, cfg: dict, fps: fl
         n = len(obs)
         mean_h = sum(p.box[3] - p.box[1] for _, p, _ in obs) / n
         bottom = sorted(p.box[3] for _, p, _ in obs)[n // 2]
-        # За стеклом: почти всё время в зоне двери и либо мельче людей в комнате,
-        # либо ноги заметно выше верхнего края стойки (стоит далеко, в коридоре).
-        far_away = mean_h < rc["outside_height_frac"] * ref_height
+        # За стеклом: почти всё время в зоне двери и ноги заметно выше верхнего края стойки
+        # (стоит далеко, в коридоре). Без стойки — грубый признак «заметно мельче людей в комнате»
+        # (со стойкой не используется: клиент за дальним краем стола мелкий из-за перспективы).
         if counter:
             cy1, ch = counter.box[1], counter.box[3] - counter.box[1]
-            far_away = far_away or bottom < cy1 - rc["outside_feet_above_counter_frac"] * ch
+            far_away = bottom < cy1 - rc["outside_feet_above_counter_frac"] * ch
+        else:
+            far_away = mean_h < rc["outside_height_frac"] * ref_height
         stats[tid] = {
             "n": n, "t": [obs[0][0], obs[-1][0]],
             "side_frac": {k: round(sides[k] / n, 3) for k in ("near", "far", "none")},

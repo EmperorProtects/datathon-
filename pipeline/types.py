@@ -83,6 +83,23 @@ class TrackInfo:
 
 
 @dataclass(frozen=True)
+class Event:
+    """Атомарное событие таймлайна: интервал + уверенность + участник и аргументы."""
+
+    type: str
+    t_start: float
+    t_end: float
+    conf: float
+    actor: int | None = None          # track_id участника
+    role: Role | None = None
+    args: dict = field(default_factory=dict)  # cls, zone, from/to, …
+
+    def to_dict(self) -> dict:
+        return {"type": self.type, "t_start": round(self.t_start, 2), "t_end": round(self.t_end, 2),
+                "conf": round(self.conf, 3), "actor": self.actor, "role": self.role, "args": self.args}
+
+
+@dataclass(frozen=True)
 class VideoTimebase:
     """Соответствие номер кадра ↔ секунды по PTS (а не секунды × средний fps)."""
 

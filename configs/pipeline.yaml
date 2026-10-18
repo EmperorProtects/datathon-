@@ -19,12 +19,25 @@ roles:
   client_side_frac: 0.5
   cashier_overlap_tol: 0.2      # фрагмент трека кассира почти не пересекается по времени с основным
   outside_door_frac: 0.9        # за стеклом двери: почти всё время внутри зоны двери …
-  outside_height_frac: 0.7      # … и заметно мельче людей в комнате,
-  outside_feet_above_counter_frac: 0.25  # … или ноги выше верха стойки на долю её высоты
+  outside_feet_above_counter_frac: 0.25  # … и ноги выше верха стойки на долю её высоты
+  outside_height_frac: 0.7      # без стойки: … и заметно мельче людей в комнате
   duplicate_iou: 0.5             # вторая рамка на том же кассире (медианный IoU в общих кадрах)
   cashier_part_max_sec: 2.0       # короткий трек, касающийся рамки кассира, — его частичная рамка (рука)
   collector_bag_min_frames: 3   # инкассатор: сумка инкассации у рук/корпуса хотя бы в N кадрах
-timeline: {min_event_sec: 0.3, gap_sec: 0.5}
+timeline:
+  min_event_sec: 0.3
+  gap_sec: 0.5
+  object_conf: 0.4
+  cash_classes: [cash, cash_bundle]
+  desk_objects: [cash, cash_bundle, collector_bag, bag, document, stamp, cup]
+  hand_radius_forearm: 0.6      # кисть «держит» объект: в рамке объекта, расширенной на 0.6 длины предплечья
+  forearm_fallback_frac: 0.15   # длина предплечья, если локоть/запястье не видны: доля высоты рамки человека
+  workstation_margin: 0.3       # кассир на месте: рамка пересекает зону стойки/сейфа, расширенную на эту долю
+  recount_motion: 0.12          # пересчёт: средний сдвиг кистей за кадр анализа, в долях предплечья …
+  recount_window_sec: 1.0       # … усреднённый по окну
+  disappear_reappear_sec: 1.0   # деньги «исчезли», если в этом месте не появились снова за это время
+  near_body_frac: 0.3           # доля рамки денег внутри зоны тела
+  in_zone_frac: 0.3             # доля рамки денег внутри зоны сейфа / сумки
 d2: {window_sec: 3.0, stride_sec: 0.5, frames_per_window: 6}
 d3: {window_sec: 5.0, stride_sec: 3.0, frames_per_window: 6, max_windows: 50}
 fusion: {decay: 0.25, nms_window_sec: 3.0, w: {d1: 1.0, d3: 1.0, d4: 1.0, d2_boost: 0.2}}
