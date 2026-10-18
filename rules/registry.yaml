@@ -377,8 +377,12 @@ types:
 - type_id: BEVERAGE_CONSUMPTION_AT_WORKSTATION
   name_ru: Употребление напитка на рабочем месте
   kind: action
-  primary_rule_id: null
-  rule_refs: []
+  primary_rule_id: R231_12
+  rule_refs:
+  - rule_id: R231_12
+    relationship: conditional
+    application_reason_ru: Ёмкость с напитком на рабочем столе кассира рассматривается как личная вещь
+      внутри кассового узла. Привязка — решение команды (в командном черновике норматива не было).
   status: draft
 - type_id: DIFFERENT_CUSTOMERS_CASH_COMBINED
   name_ru: Объединяются деньги от двух разных клиентов

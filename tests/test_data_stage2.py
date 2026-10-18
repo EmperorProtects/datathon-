@@ -58,9 +58,13 @@ def test_registry_every_loaded_type_has_real_source():
 
 
 def test_registry_type_without_source_is_skipped():
-    assert "BEVERAGE_CONSUMPTION_AT_WORKSTATION" in {t.type_id for t in REGISTRY.skipped}
+    raw = REGISTRY.model_dump()
+    raw["skipped"] = [dict(raw["types"].pop(0), primary_rule_id=None)]
+    reg = type(REGISTRY).model_validate(raw)
+    tid = raw["skipped"][0]["type_id"]
+    assert tid not in reg.type_ids() and tid in reg.type_ids(include_skipped=True)
     with pytest.raises(KeyError):
-        REGISTRY.source("BEVERAGE_CONSUMPTION_AT_WORKSTATION")
+        reg.source(tid)
 
 
 def test_registry_rejects_unknown_rule():
@@ -127,10 +131,17 @@ def test_validator_accepts_adapter_output():
     assert validate(build(*_fixture()), REGISTRY, check_files=False) == []
 
 
+def test_validator_flags_type_without_source():
+    raw = REGISTRY.model_dump()
+    raw["skipped"] = [dict(raw["types"].pop(0), primary_rule_id=None)]
+    reg = type(REGISTRY).model_validate(raw)
+    errors = validate(build(*_fixture()), reg, check_files=False)
+    assert any("no normative source" in e for e in errors), errors
+
+
 @pytest.mark.parametrize("mutate,needle", [
     (lambda u: u["videos"][0]["events"][0].update(start_sec=12), "start ≤ peak ≤ end"),
     (lambda u: u["videos"][0]["events"][0].update(type_id="MADE_UP"), "not in registry"),
-    (lambda u: u["videos"][0]["events"][0].update(type_id="BEVERAGE_CONSUMPTION_AT_WORKSTATION"), "no normative"),
     (lambda u: u["videos"][1].update(has_violation=True), "has_violation"),
     (lambda u: u["videos"][0]["events"][0].update(kind="omission"), "checkpoint"),
     (lambda u: u["videos"][0]["events"][0].update(end_sec=99), "beyond duration"),
